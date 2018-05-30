@@ -3,12 +3,12 @@ var answerTitle = prompt("Название вашего магазина?", "");
 
 var mainList = {	
 	'shopGoods': [],
-	'employers': {}
+	'employers': {},
+	'open': true
 }
 
 mainList['budget'] = cost;
 mainList['shopTitle'] = answerTitle;
-mainList.open;
 
 console.log(mainList);
 
