@@ -16,10 +16,12 @@ for (var i = 0; i < 3; i++) {
 		mainList['shopGoods'][i] = answer;
 	} else {
 		console.log('ввод некорректный');
+		i--;
 	}
 }
 
-/*var i = 0;
+/*
+var i = 0;
 while(i < 3) {
 	var answer = prompt("Какой тип товаров будем продавать?", "");
 	if ((typeof(answer)) === 'string' && answer.length < 50 && answer != '' && answer !== null) {
@@ -27,10 +29,11 @@ while(i < 3) {
 		mainList['shopGoods'][i] = answer;
 	} else {
 		console.log('ввод некорректный');
+		i--;
 	}
 	i++;
-}*/
-
+}
+*/
 /*
 var i = 0;
 do{
@@ -40,11 +43,12 @@ do{
 		mainList['shopGoods'][i] = answer;
 	} else {
 		console.log('ввод некорректный');
+		i--;
 	}
 	i++;
 }
 while(i < 3);
-*/
 
+*/
 console.log(mainList);
 

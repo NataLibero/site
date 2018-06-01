@@ -1,4 +1,4 @@
-var week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+/*var week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 for (var i = 0; i < week.length; i++) {
 	if (i == 3) {
@@ -16,7 +16,7 @@ for(var j = 0; j < arr.length; j++){
 	if(arr[j][0] == '3' || arr[j][0] == '7') {
 		console.log(arr[j]);
 	}
-}
+}*/
 
 /*
 let x = 5;
@@ -50,3 +50,4 @@ alert(+"Infinity");   // infinity *
 
 (0 || "" || 2 || undefined || true || false); //2
 */
+
