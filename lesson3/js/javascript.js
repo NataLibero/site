@@ -53,7 +53,7 @@ function workTime(time) {
 workTime(18);
 
 function getBudget() {
-	alert( 'Бюджет за 1 день: ' + 30 / cost );
+	alert( 'Бюджет за 1 день: ' + cost / 30 );
 }
 
 getBudget();

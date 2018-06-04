@@ -1,4 +1,4 @@
-var str = "урок-3-был слишком легким";
+/*var str = "урок-3-был слишком легким";
 var str2 = str.slice(0, 1).toUpperCase() + str.slice(1);
 console.log(str2);
 
@@ -45,3 +45,8 @@ function checkString(result) {
 
 checkString(' Текст внутри пробелов Текст внутри пробелов Текст внутри пробелов Текст внутри пробелов Текст внутри пробелов Текст внутри пробелов Текст внутри пробелов ');
 
+*/
+
+
+var str = 'я учу javascript!';
+console.log(str.indexOf('учу'));
