@@ -4,11 +4,9 @@ price,
 time;
 
 function start() {
-	cost = prompt("Ваш бюджет на месяц?", "");
-
-	while(isNaN(cost) || cost == null || cost == "") {
+	do {
 		cost = prompt("Ваш бюджет на месяц?", "");
-	}
+	} while(isNaN(cost) || cost == null || cost == "");
 
 	shopTitle = prompt("Название вашего магазина?", "").toUpperCase();
 	time = 18;
@@ -61,7 +59,7 @@ var mainList = {
 		for(var j = 1; j <= 4; j++) {
 			var name = prompt('Введите имя сотрудника', '');
 			if((typeof(name)) == 'string' && (typeof(name)) !== null && name != "" && name.length < 20) {
-				name = name.charAt(0).toUpperCase() + name.substr(1).toLowerCase();
+				name = name[0].toUpperCase() + name.substr(1).toLowerCase();
 				mainList['employers'][j] = j + '-' + name;
 			} else {
 				console.log('Неправильный ввод');
@@ -70,23 +68,22 @@ var mainList = {
 		}
 	},
 	chooseShopItems: function chooseShopItems() {
-		var items = prompt("Перечислите через запятую товары", "");
-
-		while((typeof(items)) !== "string" || items == null || items == "") {
-			items = prompt("Перечислите через запятую товары", "");
-		}
 		
+		do {
+			var items = prompt("Перечислите через запятую товары", "");
+		} while (((typeof(items)) !== "string" || items == null || items == ""));
+
 		mainList.shopItems = items.split(",");
-        for(var i = 0; i < mainList.shopItems.length; i++) {
-        	mainList.shopItems[i] = mainList.shopItems[i].trim();
-        }
+		for(var i = 0; i < mainList.shopItems.length; i++) {
+			mainList.shopItems[i] = mainList.shopItems[i].trim();
+		}
 		//mainList.shopItems.push(prompt("Подождите, еще один товар", ""));
 		mainList.shopItems.sort();	
 		
 	}
 }
 
-mainList.chooseShopItems();
+//mainList.chooseShopItems();
 
 document.write("У нас вы можете купить: ");
 
@@ -95,9 +92,9 @@ mainList.shopItems.forEach(function(item, i){
 	document.write('<br>' + i + ": " + item);
 })
 
-console.log("Наш магазин включает в себя: ")
+console.log("Наш магазин включает в себя: ");
 for(key in mainList) {
- 	console.log(key + ": " + mainList[key])
+	console.log(key + ": " + mainList[key])
 }
 
 
