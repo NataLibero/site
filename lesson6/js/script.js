@@ -1,17 +1,10 @@
 var open = document.getElementById('open-btn');
-//var name = document.getElementsByClassName('name');
 var name_value = document.getElementsByClassName('name-value')[0];
-//var budget = document.getElementsByClassName('budget');
 var budget_value = document.getElementsByClassName('budget-value')[0];
-//var goods = document.getElementsByClassName('goods');
 var goods_value = document.getElementsByClassName('goods-value')[0];
-//var items = document.getElementsByClassName('items');
 var items_value = document.getElementsByClassName('items-value')[0];
-//var employers = document.getElementsByClassName('employers');
 var employers_value = document.getElementsByClassName('employers-value')[0];
-//var discount = document.getElementsByClassName('discount');
 var discount_value = document.getElementsByClassName('discount-value')[0];
-//var isopen = document.getElementsByClassName('isopen');
 var isopen_value = document.getElementsByClassName('isopen-value')[0];
 var discount_price = document.getElementsByClassName('discount-price')[0];
 var full_price = document.getElementsByClassName('full-price')[0];
@@ -83,6 +76,7 @@ time_value.addEventListener('change', () => {
 	} else if (time > 8 && time < 20) {
 		console.log('Время работать');		
 		mainList.open = true;
+		budget_btn.disabled = false;
 	} else if (time < 24) {
 		console.log('Уже слишком поздно');
 		mainList.open = false;
@@ -90,10 +84,14 @@ time_value.addEventListener('change', () => {
 		console.log('В сутках только 24 часа');
 		mainList.open = false;
 	}
+
 	if(mainList.open == true) {
 		isopen_value.style.backgroundColor = 'green';
 	} else {
 		isopen_value.style.backgroundColor = 'red';
+		for(var i = 0; i < btns.length; i++) {
+			btns[i].disabled = true;
+		}
 	}
 });
 
@@ -148,15 +146,10 @@ for(var j = 0; j < hire_employers_item.length; j++){
 	hire_employers_item[j].addEventListener('blur', function(){
 
 		for(var j = 0; j < hire_employers_item.length; j++){
-			if(hire_employers_item[j].value != ''){
-				for(var i = 0; i < btns.length; i++) {
-					btns[i].disabled = false;
-				}
-				//break; (se 1 basta)
+			if(hire_employers_item[j].value != '' && mainList.open === true){
+				employers_btn.disabled = false;				
 			} else {
-				for(var i = 0; i < btns.length; i++) {
-					btns[i].disabled = true;
-				}
+				employers_btn.disabled = true;
 			}
 		}
 		
@@ -167,30 +160,14 @@ for(var k = 0; k < goods_item.length; k++){
 	goods_item[k].addEventListener('blur', function(){
 
 		for(var k = 0; k < goods_item.length; k++){
-			if(goods_item[k].value != ''){
-				for(var i = 0; i < btns.length; i++) {
-					btns[i].disabled = false;
-				}
+			if(goods_item[k].value != '' && mainList.open === true){
+				goods_btn.disabled = false;
 				break;
 			} else {
-				for(var i = 0; i < btns.length; i++) {
-					btns[i].disabled = true;
-				}
+				goods_btn.disabled = true;
 			}
 		}
 		
 	})
 }
-
-time_value.addEventListener('change', function() {	
-	if(mainList.open == true) {
-		for(var i = 0; i < btns.length; i++) {
-			btns[i].disabled = false;
-		}
-	} else {
-		for(var i = 0; i < btns.length; i++) {
-			btns[i].disabled = true;
-		}
-	}
-})
 
