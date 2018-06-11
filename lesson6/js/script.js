@@ -24,7 +24,11 @@ var shopTitle;
 var your_price;
 
 open.addEventListener('click', () => {
+	window.setTimeout(timer, 500)
+	
+})
 
+function timer() {
 	do {
 		money = prompt("Ваш бюджет на месяц?", "");
 	} while(isNaN(money) || money == null || money == "");
@@ -41,7 +45,8 @@ open.addEventListener('click', () => {
 	if(mainList.open) {		
 		get_discount();
 	}
-})
+
+}
 
 goods_btn.addEventListener('click', () => {
 	for (var i = 0; i < goods_item.length; i++) {
@@ -51,9 +56,10 @@ goods_btn.addEventListener('click', () => {
 			mainList.shopGoods[i] = a;
 			//goods_value.innerHTML += a + ', ';
 			goods_value.textContent = mainList.shopGoods;
+			goods_item[i].classList.remove('red');
 		} else {
 			console.log('ввод некорректный');
-			//i--;
+			goods_item[i].classList.add('red');			
 		}
 	}
 });
@@ -166,8 +172,19 @@ for(var k = 0; k < goods_item.length; k++){
 			} else {
 				goods_btn.disabled = true;
 			}
-		}
-		
+		}		
 	})
 }
+/*
+time_value.addEventListener('change', function() {	
+	if(mainList.open == true) {
+		for(var i = 0; i < btns.length; i++) {
+			btns[i].disabled = false;
+		}
+	} else {
+		for(var i = 0; i < btns.length; i++) {
+			btns[i].disabled = true;
+		}
+	}
+})*/
 

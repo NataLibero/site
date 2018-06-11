@@ -1,0 +1,17 @@
+ #figure {
+ 	background:red;
+ 	width:100px;
+ 	height:100px;
+ 	border-radius:50%;
+ 	position:relative;
+ 	margin-bottom: 20px;
+ }
+
+
+ #hours {
+ 	font-size: 55px;
+ 	margin: 35px auto;
+ 	border: 1px solid #4ca1de;
+ 	width: 180px;
+ 	padding: 35px;
+ }
