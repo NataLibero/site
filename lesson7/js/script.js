@@ -3,21 +3,21 @@
  var stop = document.getElementById('stop');
 
  var stepLeft = 0;
- var stop;
+ var canc;
  start.addEventListener('click', function () {
 
     function move() {
         stepLeft += 5;
         elem.style.left = stepLeft + 'px';
-        stop = requestAnimationFrame(move);
+        canc = requestAnimationFrame(move);
     }
-    stop = requestAnimationFrame(move);
+    canc = requestAnimationFrame(move);
 
 
 });
 
  stop.addEventListener('click', function () {
-    cancelAnimationFrame(stop)
+    cancelAnimationFrame(canc)
 
 });
 
