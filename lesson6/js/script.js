@@ -24,7 +24,7 @@ var shopTitle;
 var your_price;
 
 open.addEventListener('click', () => {
-	window.setTimeout(timer, 500)
+	window.setTimeout(timer, 300)
 	
 })
 
@@ -44,6 +44,7 @@ function timer() {
 
 	if(mainList.open) {		
 		get_discount();
+		open.innerHTML = 'Закрыть магазин';		
 	}
 
 }
@@ -149,10 +150,13 @@ for(var i = 0; i < btns.length; i++) {
 }
 
 for(var j = 0; j < hire_employers_item.length; j++){
-	hire_employers_item[j].addEventListener('blur', function(){
+	hire_employers_item[j].addEventListener('keyup', function(){
 
 		for(var j = 0; j < hire_employers_item.length; j++){
-			if(hire_employers_item[j].value != '' && mainList.open === true){
+			var regexp = /[а-яА-ЯЁё]/i;
+
+			var val = hire_employers_item[j].value;
+			if(hire_employers_item[j].value != '' && mainList.open === true && regexp.test(val)){
 				employers_btn.disabled = false;				
 			} else {
 				employers_btn.disabled = true;
@@ -163,7 +167,7 @@ for(var j = 0; j < hire_employers_item.length; j++){
 }
 
 for(var k = 0; k < goods_item.length; k++){
-	goods_item[k].addEventListener('blur', function(){
+	goods_item[k].addEventListener('keyup', function(){
 
 		for(var k = 0; k < goods_item.length; k++){
 			if(goods_item[k].value != '' && mainList.open === true){
@@ -175,16 +179,8 @@ for(var k = 0; k < goods_item.length; k++){
 		}		
 	})
 }
-/*
-time_value.addEventListener('change', function() {	
-	if(mainList.open == true) {
-		for(var i = 0; i < btns.length; i++) {
-			btns[i].disabled = false;
-		}
-	} else {
-		for(var i = 0; i < btns.length; i++) {
-			btns[i].disabled = true;
-		}
-	}
-})*/
+
+
+
+
 
