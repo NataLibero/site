@@ -33,7 +33,7 @@ window.addEventListener('DOMContentLoaded', function(){
 	})
 
 // Timer
-var deadline = '2018-06-13';
+var deadline = '2018-06-14';
 
 function getTimeRemaining(endtime) {
 	var t = Date.parse(endtime) - Date.parse(new Date());
@@ -82,7 +82,32 @@ function addZero(num){
 	} else {
 		return num;
 	}
-	
-
 }
+
+// scrolling
+
+var linkNav = document.querySelectorAll('nav ul [href^="#"]');
+var V = 0.5; 
+for (var i = 0; i < linkNav.length; i++) {
+	linkNav[i].addEventListener('click', function(e) { 
+		e.preventDefault(); 
+		var w = window.pageYOffset;
+		var  hash = this.href.replace(/[^#]*(.*)/, '$1'); 
+		var t = document.querySelector(hash).getBoundingClientRect().top,  
+		start = null;
+		requestAnimationFrame(step);  
+		function step(time) {
+			if (start === null) start = time;
+			var progress = time - start,
+			r = (t < 0 ? Math.max(w - progress/V, w + t) : Math.min(w + progress/V, w + t));
+			window.scrollTo(0,r);
+			if (r != w + t) {
+				requestAnimationFrame(step)
+			} else {
+				location.hash = hash  
+			}
+		}
+	}, false);
+}
+
 })
