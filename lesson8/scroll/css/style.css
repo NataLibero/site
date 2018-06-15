@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+}
+.menu{
+  height: 50px;
+  line-height: 50px;
+}
+.menu a {
+  padding: 5px;
+  
+}
+section {
+  height: 200vh;
+  color: #fff;
+  font-size: 25px;
+}
+
+.sec1 {
+  background-color: red;
+}
+.sec2 {
+  background-color: green;
+}
+.sec3 {
+  background-color: blue;
+}
