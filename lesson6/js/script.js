@@ -44,7 +44,6 @@ function timer() {
 
 	if(mainList.open) {		
 		get_discount();
-		open.innerHTML = 'Закрыть магазин';		
 	}
 
 }
@@ -107,13 +106,16 @@ budget_btn.addEventListener('click', () => {
 });
 
 employers_btn.addEventListener('click', () => {
+	employers_value.textContent = "";
 	for(var i = 0; i < hire_employers_item.length; i++) {
+
 		var b = hire_employers_item[i].value;
 		b = b[0].toUpperCase() + b.substr(1).toLowerCase();
 		mainList['employers'][i] = b;
 		   //employers_value.textContent += b + ', ';
 		   employers_value.textContent += mainList.employers[i] + ', ';			
 		}
+		employers_value.textContent = employers_value.textContent.substring(0, employers_value.textContent.length - 2);
 	});
 
 function get_discount() {
@@ -151,18 +153,19 @@ for(var i = 0; i < btns.length; i++) {
 
 for(var j = 0; j < hire_employers_item.length; j++){
 	hire_employers_item[j].addEventListener('keyup', function(){
-
+	var b = 0;
 		for(var j = 0; j < hire_employers_item.length; j++){
 			var regexp = /[а-яА-ЯЁё]/i;
-
 			var val = hire_employers_item[j].value;
-			if(hire_employers_item[j].value != '' && mainList.open === true && regexp.test(val)){
-				employers_btn.disabled = false;				
-			} else {
-				employers_btn.disabled = true;
-			}
+			if(val != '' && mainList.open === true && regexp.test(val)){
+				b++;							
+			} 
 		}
-		
+		if(b == 3){
+			employers_btn.disabled = false;
+		} else {
+			employers_btn.disabled = true;
+		}
 	})
 }
 
