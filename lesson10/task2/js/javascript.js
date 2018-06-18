@@ -2,35 +2,32 @@ window.addEventListener('DOMContentLoaded', function(){
 
 
 class Options {
-	constructor(height, width, bg, color, textAlign, fontSize) {	
-		
+	constructor(height, width, bg, color, textAlign, fontSize) {
 		this.height = height;
 		this.width = width;
 		this.bg = bg;
 		this.color = color;
 		this.textAlign = textAlign;
-		this.fontSize = fontSize;
-		
+		this.fontSize = fontSize
 	}
-
-	createDiv(){
+	
+	createDiv(text) {
 		var div = document.createElement('div');
-		div.style.height = this.height + 'px';
-		div.style.width = this.width + 'px';
-		div.style.background = this.bg;
-		div.style.color = this.color;
-		div.style.textAlign = this.textAlign;
-		div.style.fontSize = this.fontSize + 'px';
-		div.innerHTML = 'Hallo World';
-		div.style.lineHeight = '100px'
+		div.textContent = text;
+		div.style.cssText = `height: ${this.height};
+							 width: ${this.width};
+							 background-color: ${this.bg};
+							 color: ${this.color};
+							 text-align: ${this.textAlign};
+							 font-size: ${this.fontSize}`
+
 		document.body.appendChild(div);
 	}
 	
 }
 
-var elem = new Options(100, 200, 'blue', 'white', 'center', 30);
-console.log(elem);
-elem.createDiv();
-
+var elem = new Options('100px', '200px', 'blue', 'white', 'center', '30px');
+elem.createDiv('Hello World!');
+console.log(elem.fontSize);
 
 })
