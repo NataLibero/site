@@ -51,4 +51,29 @@ $(document).mouseup(function(e) {
 
 	});*/
 
+
+// Ajax with json
+
+let sendObject = {
+  name: 'Elmir',
+  surname: 'Ismayilzade',
+  age: 20,
+  sex: 'Male'
+}; // Создали объект
+
+
+$.ajax({
+	method: "POST",
+	url: "ПУТЬ_К_СЕРВЕРУ",
+	data: sendObject, // Отправляем объект (он сам преобразуется в JSON)
+    success: function(response) {
+      /* Если всё прошло удачно */
+    },
+    error: function(err) {
+      /* Если возникла какая-то ошибка */
+    }
+});
+
+
+
 })
