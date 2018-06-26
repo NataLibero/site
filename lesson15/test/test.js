@@ -62,3 +62,30 @@ describe('Функция each', function() {
 		expect([8, 7, 6, 5, 4]).to.eql(each(arr2, myFunc));
 	})
 })
+
+/*function sayName(name) {
+	let message = "My name ia" + name
+	return message
+}
+
+let arr = [5, -3,6,-5,0,-7,8,9];
+let result = arr.reduce(function(sum,elem) {
+	return sum + elem;
+})
+
+let assert = require('chai').assert
+
+describe("sayName", function() {
+
+	it("Получаем фразу с новым именем", function(){
+		assert.typeOf(sayName("Alex"), "string")
+	})
+});
+
+describe("arr", function(){
+	it("Получаем сумму массива", function(){
+		assert.equal(result, 13)
+	})
+})
+
+*/
