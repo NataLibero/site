@@ -1,5 +1,5 @@
 function modal() {
-	let more = document.querySelector('.more');
+let more = document.querySelector('.more');
 let descriptBtn = document.querySelectorAll('.description-btn');
 let overlay = document.querySelector('.overlay');
 let close = document.querySelector('.popup-close');	

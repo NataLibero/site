@@ -6,6 +6,7 @@ window.addEventListener('DOMContentLoaded', function(){
 	let modal = require("../part/modal.js");
 	let slider = require("../part/slider.js");
 	let calc = require("../part/calc.js");
+	let form = require("../part/form.js");
 	let timer = require("../part/timer.js");
 
 	tab();
@@ -13,11 +14,12 @@ window.addEventListener('DOMContentLoaded', function(){
 	modal();
 	slider();
 	calc();
+	form();
 	timer();
 })
 
 
-},{"../part/calc.js":2,"../part/modal.js":3,"../part/scroll.js":4,"../part/slider.js":5,"../part/tab.js":6,"../part/timer.js":7}],2:[function(require,module,exports){
+},{"../part/calc.js":2,"../part/form.js":3,"../part/modal.js":4,"../part/scroll.js":5,"../part/slider.js":6,"../part/tab.js":7,"../part/timer.js":8}],2:[function(require,module,exports){
 function calc() {
 	let persons = document.getElementsByClassName('counter-block-input')[0],
 	restDays = document.getElementsByClassName('counter-block-input')[1],
@@ -40,7 +42,7 @@ function calc() {
 		for(var i = 0; i < counterInputs.length; i++) {
 			var val = counterInputs[i].value;
 			var regexp = /\+/;
-			if(val == '' || isInteger(val) === false || regexp.test(val) == true || val.indexOf("e") == '1') {
+			if(val == '' || isInteger(val) === false || regexp.test(val) == true) {
 				totalValue.innerHTML = 0;
 			} else {
 				t++;
@@ -66,12 +68,77 @@ function calc() {
 	function isInteger(x) {
 		return x % 1 === 0;
 	}
+
+	persons.addEventListener('keydown', function(e) {
+        if (e.key === 'e' && persons.value.indexOf('e') == -1) e.preventDefault();
+    })
+    restDays.addEventListener('keydown', function(e) {
+        if (e.key === 'e' && restDays.value.indexOf('e') == -1) e.preventDefault();
+    })
 }
 
 module.exports = calc;
 },{}],3:[function(require,module,exports){
+function form() {
+	let message = new Object();
+message.loading = "Загрузка...";
+message.success = "Спасибо! Скоро мы с вами свяжемся";
+message.failure = "Что-то пошло не так...";
+
+let form = document.getElementsByClassName('main-form')[0],
+formBottom = document.getElementById('form'),
+input = document.getElementsByTagName('input'),
+statusMessage = document.createElement('div');
+statusMessage.classList.add('status');
+
+function sendForm(elem) {
+	elem.addEventListener('submit', function(e) {
+		e.preventDefault();
+		elem.appendChild(statusMessage);
+		let formData = new FormData(elem);
+
+		function postData(data) {
+			return new Promise(function(resolve, reject) {
+				let request = new XMLHttpRequest();
+				request.open('POST', 'server.php');
+				request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				request.onreadystatechange = function() {
+					if (request.readyState < 4) {
+						resolve()
+					} else if(request.readyState === 4) {
+						if(request.status == 200 && request.status < 300) {
+							resolve()
+						} else {
+							reject()
+						}
+					}
+				}
+				request.send(data);
+			}) 
+			} // postData
+
+			function clearInput() {
+				for(let i = 0; i < input.length; i++) {
+					input[i].value = "";
+				}
+			}
+
+			postData(formData)
+			.then(() => statusMessage.innerHTML = message.loading)
+			.then(() => statusMessage.innerHTML = message.success)
+			.catch(() => statusMessage.innerHTML = message.failure)
+			.then(clearInput)
+		});
+}
+sendForm(form);
+sendForm(formBottom);
+
+}
+
+module.exports = form;
+},{}],4:[function(require,module,exports){
 function modal() {
-	let more = document.querySelector('.more');
+let more = document.querySelector('.more');
 let descriptBtn = document.querySelectorAll('.description-btn');
 let overlay = document.querySelector('.overlay');
 let close = document.querySelector('.popup-close');	
@@ -99,7 +166,7 @@ close.addEventListener('click', () => {
 }
 
 module.exports = modal;
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 function scroll() {
 	let linkNav = document.querySelectorAll('nav ul [href^="#"]');
 linkNav.forEach((item, idx, arr) => {
@@ -116,7 +183,7 @@ linkNav.forEach((item, idx, arr) => {
 }
 
 module.exports = scroll;
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 function slider() {
 	let slideIndex = 1,
 slides = document.getElementsByClassName('slider-item'),
@@ -174,7 +241,7 @@ dotsWrap.addEventListener('click', function(e) {
 }
 
 module.exports = slider;
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 function tab() {
 	let tab = document.getElementsByClassName('info-header-tab');
 	let tabContent = document.getElementsByClassName('info-tabcontent');
@@ -211,7 +278,7 @@ function tab() {
 }
 
 module.exports = tab;
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 function timer() {
 	let deadline = '2018-06-24';
 

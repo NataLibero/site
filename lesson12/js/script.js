@@ -210,11 +210,12 @@ dotsWrap.addEventListener('click', function(e) {
 		for(var i = 0; i < counterInputs.length; i++) {
 			var val = counterInputs[i].value;
 			var regexp = /\+/;
-			if(val == '' || isInteger(val) === false || regexp.test(val) == true || val.indexOf("e") == '1') {
+			//if(val == '' || isInteger(val) === false || regexp.test(val) == true || val.indexOf("e") == '1') {
+				if(val == '' || isInteger(val) === false || regexp.test(val) == true) {
 				totalValue.innerHTML = 0;
 			} else {
 				t++;
-			}		
+			}		            
 		}
 		if(t == 2) {
 			total = (personsSum + daysSum)*4000;
@@ -235,8 +236,14 @@ dotsWrap.addEventListener('click', function(e) {
 
 	function isInteger(x) {
 		return x % 1 === 0;
-	}
+	}   
 
+    persons.addEventListener('keydown', function(e) {
+        if (e.key === 'e' && persons.value.indexOf('e') == -1) e.preventDefault();
+    })
+    restDays.addEventListener('keydown', function(e) {
+        if (e.key === 'e' && restDays.value.indexOf('e') == -1) e.preventDefault();
+    })
 
 })
 

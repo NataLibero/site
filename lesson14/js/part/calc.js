@@ -20,7 +20,7 @@ function calc() {
 		for(var i = 0; i < counterInputs.length; i++) {
 			var val = counterInputs[i].value;
 			var regexp = /\+/;
-			if(val == '' || isInteger(val) === false || regexp.test(val) == true || val.indexOf("e") == '1') {
+			if(val == '' || isInteger(val) === false || regexp.test(val) == true) {
 				totalValue.innerHTML = 0;
 			} else {
 				t++;
@@ -46,6 +46,13 @@ function calc() {
 	function isInteger(x) {
 		return x % 1 === 0;
 	}
+
+	persons.addEventListener('keydown', function(e) {
+        if (e.key === 'e' && persons.value.indexOf('e') == -1) e.preventDefault();
+    })
+    restDays.addEventListener('keydown', function(e) {
+        if (e.key === 'e' && restDays.value.indexOf('e') == -1) e.preventDefault();
+    })
 }
 
 module.exports = calc;
